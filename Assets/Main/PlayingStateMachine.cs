@@ -23,6 +23,16 @@ public class PlayingStateMachine : MonoBehaviour {
             Debug.Log("Current playing state is " + currentState.GetType());
         }
     }
+
+    public State GetCurrentState()
+    {
+        return currentState;
+    }
+
+    public Boolean IsCurrentState(State state)
+    {
+        return currentState.GetType().Equals(state.GetType());
+    }
 }
 
 public enum StateEvent
@@ -31,7 +41,10 @@ public enum StateEvent
     StartCalibrating,
     FinishCalibrating,
     StartPlaying,
-    StopPlaying
+    StopPlaying,
+    StartChange,
+    ChooseBar,
+    ChooseJuRob
 }
 
 public interface State
@@ -49,9 +62,9 @@ public class InitState : State
         {
             return new RestartState();
         }
-        else if (stateEvent == StateEvent.StartCalibrating)
+        else if (stateEvent == StateEvent.StartChange)
         {
-            return new CalibratingState();
+            return new ChangeState();
         }
         return this;
     }
@@ -155,6 +168,35 @@ public class RestartState : State
     public void OnEnterState()
     {
         GameObject.FindObjectOfType<LifeCycle>().Restart();
+    }
+
+    public void OnExitState()
+    {
+    }
+}
+
+public class ChangeState : State
+{
+    public State GetNextState(StateEvent stateEvent)
+    {
+        if (stateEvent == StateEvent.Restart)
+        {
+            return new RestartState();
+        }
+        else if (stateEvent == StateEvent.ChooseBar)
+        {
+            return new WaitingForPlayingState();
+        }
+        else if (stateEvent == StateEvent.ChooseJuRob)
+        {
+            return new CalibratingState();
+        }
+        return this;
+    }
+
+    public void OnEnterState()
+    {
+        GameObject.FindObjectOfType<LifeCycle>().LoadChangeScene();
     }
 
     public void OnExitState()

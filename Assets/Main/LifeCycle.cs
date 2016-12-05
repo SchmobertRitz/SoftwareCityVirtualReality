@@ -18,6 +18,11 @@ public class LifeCycle : MonoBehaviour {
         EventBus.Post(new SceneReadyEvent());
     }
 
+    public void LoadChangeScene()
+    {
+        Application.LoadLevel("ChangeScene");
+    }
+
     public void Restart()
     {
         Application.LoadLevel("MainScene");
