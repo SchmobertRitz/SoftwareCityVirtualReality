@@ -24,5 +24,9 @@ public class KeyListener : MonoBehaviour {
         {
             FindObjectOfType<Grow>().SetScaleValue(1f);
         }
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            EventBus.Post(new Events.BuildingSelectionConfirmedEvent());
+        }
     }
 }

@@ -199,6 +199,16 @@ public class AnimateThis : MonoBehaviour {
             return this;
         }
 
+        public TransformAnimationBuilder FromScale(float scaleFrom)
+        {
+            return FromScale(Vector3.one * scaleFrom);
+        }
+
+        public TransformAnimationBuilder ToScale(float scaleTo)
+        {
+            return ToScale(Vector3.one * scaleTo);
+        }
+
         public TransformAnimationBuilder FromScale(Vector3 scaleFrom)
         {
             transformAnimatable.scaleFrom = scaleFrom;
