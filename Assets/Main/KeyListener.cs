@@ -10,7 +10,7 @@ public class KeyListener : MonoBehaviour {
         }
         if (GetComponent<PlayingStateMachine>().IsCurrentState(new InitState()))
         {
-            if (Input.anyKeyDown)
+            if (Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Escape))
             {
                 GetComponent<PlayingStateMachine>().PostStateEvent(StateEvent.StartChange);
             }

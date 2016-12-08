@@ -201,5 +201,6 @@ public class ChangeState : State
 
     public void OnExitState()
     {
+        GameObject.FindObjectOfType<LifeCycle>().UnloadChangeScence();
     }
 }

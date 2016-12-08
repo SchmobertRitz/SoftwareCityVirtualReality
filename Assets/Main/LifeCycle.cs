@@ -20,7 +20,12 @@ public class LifeCycle : MonoBehaviour {
 
     public void LoadChangeScene()
     {
-        Application.LoadLevel("ChangeScene");
+        Application.LoadLevelAdditive("ChangeScene");
+    }
+
+    public void UnloadChangeScence()
+    {
+        Application.UnloadLevel("ChangeScene");
     }
 
     public void Restart()
