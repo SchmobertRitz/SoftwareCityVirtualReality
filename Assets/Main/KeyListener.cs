@@ -28,5 +28,17 @@ public class KeyListener : MonoBehaviour {
         {
             EventBus.Post(new Events.BuildingSelectionConfirmedEvent());
         }
+        if (Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            Hint.Display("testhint");
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad5))
+        {
+            Hint.Hide("testhint");
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad6))
+        {
+            Hint.Reset();
+        }
     }
 }
